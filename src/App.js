@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getUser } from './services/fetch-utils';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import AuthPage from './AuthPage';
 import { logout } from './services/fetch-utils';
 import ListPage from './ListPage';
@@ -14,9 +9,15 @@ import './App.css';
 
 export default function App() {
   // track the user in state
+  const [currentUser, setCurrentUser] = useState(localStorage.getItem('supabase.auth.token'));
 
   // add a useEffect to get the user and inject the user object into state on load
-
+  useEffect(() => {
+    async function getUserObject() {
+      const data = await getUser();
+      setCurrentUser(data);
+    }
+  }, []);
   async function handleLogout() {
     // call the logout function
     // clear the user in state
@@ -24,10 +25,8 @@ export default function App() {
 
   return (
     <Router>
-      <div className='App'>
-        <header>
-          {/* if there's a user, render a logout button here */}
-        </header>
+      <div className="App">
+        <header>{/* if there's a user, render a logout button here */}</header>
         <main>
           <Switch>
             <Route exact path="/">
@@ -35,10 +34,10 @@ export default function App() {
             </Route>
             <Route exact path="/shopping-list">
               {/* if there's a user, take them to the list page. Otherwise, redirect them to the home/auth page */}
-
             </Route>
           </Switch>
         </main>
       </div>
     </Router>
-  );}
+  );
+}
