@@ -16,7 +16,7 @@ export default function ListItemForm({ fetchItems }) {
       has_been_bought: false,
     });
     // refetch the items using the handler function passed down as a prop
-    fetchItems();
+    await fetchItems();
     setItemName('');
     setItemQuantity('');
     // clear the name and quantity in state to refresh the form
