@@ -6,7 +6,7 @@ export default function ListItemForm({ fetchItems }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
+
     // make a new list item in supabase using the form values stored in state
 
     // refetch the items using the handler functionpassed down as a prop
@@ -15,27 +15,28 @@ export default function ListItemForm({ fetchItems }) {
   }
 
   return (
-    <div className='new-item-form-container'>
+    <div className="new-item-form-container">
       {/* on submit, call the handleSubmit function */}
       <form>
-          I need . . . 
+        I need . . .
         <label>
-            Quantity
+          Quantity
           {/* on change, update the quantity in state */}
-          <input 
+          <input
             // this should be a controlled input, soi set the value based on state
-            required 
-            type="number" 
+            required
+            type="number"
             name="quantity"
           />
         </label>
         <label>
-            Name
+          Name
           {/* on change, update the name in state */}
           <input
-            // this should be a controlled input, soi set the value based on state 
-            required 
-            name="name" />
+            // this should be a controlled input, soi set the value based on state
+            required
+            name="name"
+          />
         </label>
         <button>Add item</button>
       </form>
