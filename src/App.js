@@ -20,8 +20,6 @@ export default function App() {
     getUserObject();
   }, []);
 
-  console.log(currentUser);
-
   async function handleLogout() {
     logout();
     setCurrentUser('');

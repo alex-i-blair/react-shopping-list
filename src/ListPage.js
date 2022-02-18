@@ -29,7 +29,12 @@ export default function ListPage() {
       <button onClick={handleDeleteClick}>New List</button>
       <ListItemForm fetchItems={fetchItems} />
       {/* pass fetchItems to the ListItemForm component */}
-      <div className="item-list">{/* map through all the list items and render them here */}</div>
+      <div className="item-list">
+        {listItems.map((item, i) => (
+          <ListItem key={item.name + i} fetchItems={fetchItems} listItem={item} />
+        ))}
+        {/* map through all the list items and render them here */}
+      </div>
     </div>
   );
 }
